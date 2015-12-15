@@ -1,0 +1,13 @@
+<ion-view view-title="DUYURULAR">
+  <ion-content>
+    <h1>DUYURULAR</h1>
+    {{msj}}
+    <ion-list>
+      <ion-item class="item-avatar" ng-repeat="d in duyurular" href="">
+        <img src="http://freedesignfile.com/upload/2012/06/41.jpg">
+        <h2>{{d.baslik}}</h2>
+        <p>{{d.gonderen}}</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
