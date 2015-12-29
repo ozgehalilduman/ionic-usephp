@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers','starter.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -20,6 +20,10 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services'])
       StatusBar.styleDefault();
     }
   });
+  $rootScope.$on('$stateChangeStart', function(event, toState, fromState) {
+    alert(toState.name);
+  });
+
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -88,5 +92,5 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/browse');
+  $urlRouterProvider.otherwise('/app/duyurular');
 });

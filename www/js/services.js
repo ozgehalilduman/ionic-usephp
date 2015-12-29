@@ -18,6 +18,16 @@ angular.module('starter.services', [])
                   $promise.then(function(msg){
                       scope.siniflar=msg.data;
                    });//promise kısmının
-                 }//siniflariGetir
+                 },//siniflariGetir
+               loginYap:function(scope,loginData){
+                   var $promise=$http.post('http://localhost:8080/telefon/loginYap.php',{'loginData':loginData});
+                   $promise.then(function(msg){
+                       console.info(msg.data);
+                       if(msg.data=='TAMAM')
+                       {scope.islemdurum="İŞLEMİNİZ BAŞARILI";scope.closeLogin();}
+                       else
+                       {scope.islemdurum="GİRİLEN DEGERLER HATALI";}
+                    });//promise kısmının
+                  }//siniflariGetir
           }//return
      });//factory
