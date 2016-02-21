@@ -1,13 +1,22 @@
 <ion-view view-title="YOKLAMA AL">
   <ion-content>
     <h1>YOKLAMA</h1>
+
     <button class="button ion-button" ng-repeat="s in siniflar" ng-click="sinif_ogr(s.sinif)">{{s.sinif}}</button>
-    <ion-list>
-      <ion-item class="item-avatar" ng-repeat="ogr in ogrenciler" href="">
-        <img src="http://findicons.com/files/icons/2770/ios_7_icons/128/student2.png">
-        <h2>{{ogr.okulno}} {{ogr.ad}} {{ogr.soyad}}</h2>
-        <p>{{ogr.sinif}}</p>
-      </ion-item>
-    </ion-list>
+    <div class="row">
+      <div ng-show="yoklamagoster" class="col col-20">
+        <button ng-click="yokyazilanlar.splice($index,1);var_yaz(y)" ng-repeat="y in yokyazilanlar" class="col button button-small button-outline button-positive">
+          {{y.okulno}}
+        </button>
+      </div>
+      <ion-list show-delete="true" ng-class="{yoklamagoster:'col-80'}" class="col">
+        <ion-item class="item-button-right item-avatar" ng-repeat="ogr in ogrenciler" href="">
+          <ion-delete-button class="ion-minus-circled" ng-click="ogrenciler.splice($index,1);yok_yaz(ogr)"></ion-delete-button>
+          <img src="http://findicons.com/files/icons/2770/ios_7_icons/128/student2.png">
+          <h2>{{ogr.okulno}} {{ogr.ad}} {{ogr.soyad}}</h2>
+          <p>{{ogr.sinif}}</p>
+        </ion-item>
+      </ion-list>
+    </div>
   </ion-content>
 </ion-view>

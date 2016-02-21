@@ -36,7 +36,7 @@ angular.module('starter.controllers',[])
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
 
-    
+
   };
 })
 
@@ -56,10 +56,30 @@ angular.module('starter.controllers',[])
 })
 .controller('yoklamaalCtrl', function($scope,bilgiService) {
   $scope.msj="Başarılar...";
+  $scope.saat=1;
+  $scope.ders=1;
+  $scope.ogrt=1;
+  $scope.tarih="20.02.2016";
+  $scope.msj="Başarılar...";
+
   $scope.siniflar=bilgiService.siniflariGetir($scope);
+  $scope.yokyazilanlar=[];
+  $scope.yoklamagoster=false;
   $scope.sinif_ogr = function(sinif) {
-    //alert(sinif);
+    $scope.yokyazilanlar=[];
     $scope.ogrenciler=bilgiService.ogrencileriGetir($scope,sinif);
+  };
+  $scope.yok_yaz = function(ogr) {
+    console.info(ogr);
+    $scope.yoklamagoster=true;
+    $scope.yokyazilanlar.push(ogr);
+    bilgiService.yok_yaz_f($scope,ogr);
+  };
+  $scope.var_yaz = function(ogr) {
+    console.info(ogr);
+    if($scope.yokyazilanlar.length==0){$scope.yoklamagoster=false;}
+    $scope.ogrenciler.push(ogr);
+    bilgiService.var_yaz_f($scope,ogr);
   };
 })
 .controller('PlaylistCtrl', function($scope, bilgiService,$stateParams) {

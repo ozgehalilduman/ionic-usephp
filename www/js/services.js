@@ -28,6 +28,18 @@ angular.module('starter.services', [])
                        else
                        {scope.islemdurum="GİRİLEN DEGERLER HATALI";}
                     });//promise kısmının
-                  }//siniflariGetir
+                  },//siniflariGetir
+               yok_yaz_f:function(scope,ogr){
+                   var $promise=$http.post('http://localhost:8080/telefon/yokyaz.php',{'ogr':ogr,'ders':scope.ders,'saat':scope.saat,'ogrt':scope.ogrt,'tarih':scope.tarih});
+                   $promise.then(function(msg){
+                       console.info(msg.data);
+                    });//promise kısmının
+                  },//yok_yaz_f
+                var_yaz_f:function(scope,ogr){
+                    var $promise=$http.post('http://localhost:8080/telefon/varyaz.php',{'ogr':ogr,'ders':scope.ders,'saat':scope.saat,'ogrt':scope.ogrt,'tarih':scope.tarih});
+                    $promise.then(function(msg){
+                        console.info(msg.data);
+                     });//promise kısmının
+                   }//var_yaz_f
           }//return
      });//factory
